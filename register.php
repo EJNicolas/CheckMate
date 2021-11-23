@@ -10,10 +10,7 @@
   }
 
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // TODO: check for existing user account, if there is none, encrypt the password and save the entry
-    // Make sure password matches
-    if( isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
-      $email = $_POST['email'];
+    if( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
       $username = htmlspecialchars($_POST['username']);
       $password = htmlspecialchars($_POST['password']);
       $passwordConfirm = htmlspecialchars($_POST['password_confirm']);
