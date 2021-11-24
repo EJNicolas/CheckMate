@@ -10,7 +10,8 @@
   }
 
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
+    if( isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
+      $email = $_POST['email'];
       $username = htmlspecialchars($_POST['username']);
       $password = htmlspecialchars($_POST['password']);
       $passwordConfirm = htmlspecialchars($_POST['password_confirm']);

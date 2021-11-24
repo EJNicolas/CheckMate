@@ -55,7 +55,9 @@
     echo "Password:<br />";
     echo "<input type='password' name='password' value='' /><br />";
     echo "<input type='submit' />";
-  echo "</form>";
+  echo "</form> </br>";
+
+  echo "<a href='register.php'>Register</a>";
 
   include("footer.php");
 

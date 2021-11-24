@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("header.php");
+  include("onlineheader.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
       $msg = "Database connection failed: ";
@@ -18,7 +18,12 @@
     if($_COOKIE[$onlineStatus]=="TRUE"){
       echo "Cookie '" . $onlineStatus . "' is true!<br>";
     }
-
   }
 
+  echo "<h2>Online Users</h2>";
+  echo "<ul id='online-users-list'>";
+  echo "</ul>";
+  include("checkonlineusers.php");
+
+  include("footer.php");
 ?>
