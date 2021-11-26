@@ -13,10 +13,19 @@ $(document).ready(function(){
       var showMenu = false;
       onlineUsers.on("click", function(){
         showMenu = !showMenu;
+        var onlineUsername = $(this).text();
+        console.log(onlineUsername);
         if(showMenu){
           $(this).append("<ul class='user-drop-down'> \n <li class='user-message'>message</li> \n <li class='view-user-profile'>view profile</li> \n </ul>");
+
           $(".user-message").on("click", function(){
-            alert("message user clicked on");
+            alert("creating chat between you and " + onlineUsername);
+            //setting cookies to in js learned from https://www.w3schools.com/js/js_cookies.asp
+            const d = new Date();
+            d.setTime(d.getTime() + (1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = "contactingUser=" + onlineUsername + ";" + expires;
+            window.location.assign("chats.php");
           });
 
           $(".view-user-profile").on("click", function(){

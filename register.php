@@ -22,13 +22,19 @@
         $elo = $_POST['elo'];
 
       $queryString = "SELECT email FROM users WHERE email = '$email'";
-      $result = $db->query($queryString);
+      $resultEmail = $db->query($queryString);
+      $queryString = "SELECT username FROM users WHERE username = '$username'";
+      $resultUsername = $db->query($queryString);
       if(!($password == $passwordConfirm)){
         echo "<p>Passwords were not the same</p>";
       }
-      else if(!($result->num_rows == 0)){
+      else if(!($resultEmail->num_rows == 0)){
         echo "<p>Account under that email already exists</p>";
-      }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      }
+      else if(!($resultUsername->num_rows == 0)){
+        echo "<p>Account under that username already exists. Please use a different one</p>";
+      }
+      else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         echo "<p>email is not valid</p>";
       }
       else{

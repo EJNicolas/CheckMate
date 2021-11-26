@@ -35,8 +35,13 @@
       else
         $newElo = $_POST['elo'];
 
+        $queryString = "SELECT username FROM users WHERE username = '$newUsername'";
+        $resultUsername = $db->query($queryString);
         if(!($newPassword == $newPasswordConfirm)){
           echo "<p>Passwords were not the same</p>";
+        }
+        else if(!($resultUsername->num_rows == 0)){
+          echo "<p>Account under that username already exists. Please use a different one</p>";
         }
         else{
           $encryptedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
