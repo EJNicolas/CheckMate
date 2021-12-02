@@ -40,7 +40,7 @@ $(document).ready(function(){
       });
 
     });
-    setTimeout(checkOnline, 20000);
+    setTimeout(checkOnline, 8000);
   };
 
   checkOnline();

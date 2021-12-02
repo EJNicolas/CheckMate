@@ -1,0 +1,28 @@
+body{
+  margin-left: 2rem;
+  font-size: 1.2rem;
+}
+
+nav{
+  border-style: solid;
+}
+
+nav a{
+  margin-left: 2rem;
+}
+
+.online-user{
+  margin-bottom: 1rem;
+}
+
+.user-drop-down:hover{
+  cursor:pointer;
+}
+
+.online-user:hover{
+  cursor:pointer;
+}
+
+input{
+  margin-bottom: 1rem;
+}
