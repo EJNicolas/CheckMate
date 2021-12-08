@@ -29,7 +29,7 @@ $(document).ready(function(){
           });
 
           $(".view-user-profile").on("click", function(){
-            window.location.assign("profile.php");
+            window.location.href = "profile.php?username="+onlineUsername;
           });
 
         }

@@ -18,7 +18,7 @@
   if(isset($_COOKIE['contactingUser'])){
     $member2 = $_COOKIE['contactingUser'];
   }
-  $queryString = "";
+  $queryString = "SELECT ";
 
   echo "<h1>This chat is for $member1 and $member2</h2>";
 
