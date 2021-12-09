@@ -9,7 +9,7 @@
       exit($msg);
   }
 
-  if( isset($_GET['username'])){
+  if(isset($_GET['username'])){
     $username=htmlspecialchars($_GET['username']);
   }
   else if(isset($_SESSION['username'])){

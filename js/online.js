@@ -25,7 +25,7 @@ $(document).ready(function(){
             d.setTime(d.getTime() + (1000));
             let expires = "expires="+ d.toUTCString();
             document.cookie = "contactingUser=" + onlineUsername + ";" + expires;
-            window.location.assign("chats.php");
+            window.location.assign("initialize-chat.php");
           });
 
           $(".view-user-profile").on("click", function(){

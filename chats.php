@@ -9,18 +9,16 @@
       exit($msg);
   }
 
+  if(isset($_GET['chatId'])) $chatId = $_GET['chatId'];
   if(isset($_SESSION['email'])){
-    $userEmail = $_SESSION['email'];
-    $member1 = $_SESSION['username'];
-  }
-  else header("Location: home.php");
+    $email = $_SESSION['email'];
+    $usename = $_SESSION['username'];
+  } else header("Location: login.php");
 
-  if(isset($_COOKIE['contactingUser'])){
-    $member2 = $_COOKIE['contactingUser'];
-  }
-  $queryString = "SELECT ";
+  //check if the user belongs in this chat
+  $queryString = "SELECT member1, member2"
 
-  echo "<h1>This chat is for $member1 and $member2</h2>";
 
   include("footer.php");
+
 ?>
