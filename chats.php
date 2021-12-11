@@ -87,7 +87,7 @@
         echo "</div>";
       echo "</div>";
 
-      include("get-messages.php");
+      //include("get-messages.php");
       include("send-message.php");
     }
   }
