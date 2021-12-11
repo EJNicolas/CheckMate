@@ -14,7 +14,7 @@ $(document).ready(function(){
     .fail(function(er){
       console.log(er);
     });
-    setTimeout(updateChat, 6000);
+    setTimeout(updateChat, 3000);
   };
 
   updateChat();
