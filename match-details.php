@@ -146,6 +146,7 @@ $limit = 10;
               //only check if the key exists.
               echo "<table><tr>";
               echo "<tr><td>" .$commentRow['username']."</td>";
+              echo "<tr><td>" .$commentRow['dateTime']."</td>";
               echo "<tr><td>" . $commentRow['message'] ."</td></tr>"; 
               echo "</tr>";
               echo "  </tr></table>";
