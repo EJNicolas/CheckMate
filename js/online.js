@@ -45,26 +45,4 @@ $(document).ready(function(){
 
   checkOnline();
 
-  // var showMenu = false;
-  // body.on("mouseover", function(){
-  //   var onlineUsers = $(".online-user");
-  //   onlineUsers.on("click", function(){
-  //     showMenu = !showMenu;
-  //     console.log(showMenu);
-  //     if(showMenu){
-  //       $(this).append("<ul class='user-drop-down'> \n <li class='user-message'>message</li> \n <li class='view-user-profile'>view profile</li> \n </ul>");
-  //     }
-  //     else{
-  //       $(".user-drop-down").remove();
-  //     }
-  //
-  //     // if(showMenu){
-  //     //   showMenu = false;
-  //     // }
-  //
-  //   });
-  // });
-
-
-
 });

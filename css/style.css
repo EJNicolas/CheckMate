@@ -1,6 +1,12 @@
 body{
+  display: block;
   margin-left: 2rem;
   font-size: 1.2rem;
+}
+
+p{
+  display: block;
+  max-width: 50rem;
 }
 
 nav{

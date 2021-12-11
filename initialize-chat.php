@@ -16,7 +16,7 @@
   }
 
   //check if a connection between these members already exists
-  $queryString = "SELECT member1, member2 FROM chat_connections WHERE (member1 = '$member1Email' OR member2 = '$member1Email') AND (member1 = '$member2Email' OR member2 = '$member2Email')";
+  $queryString = "SELECT * FROM chat_connections WHERE (member1 = '$member1Email' OR member2 = '$member1Email') AND (member1 = '$member2Email' OR member2 = '$member2Email')";
   $result = $db->query($queryString);
 
   //code for initially creating a chat connection
@@ -30,17 +30,14 @@
       echo "<p>Chat connection insertion was successful</p>";
 
       //get the chat id for the new chat_connection that was made
-      $queryString = "SELECT chat_id FROM chat_connections WHERE (member1 = '$member1Email' OR member2 = '$member1Email') AND (member1 = '$member2Email' OR member2 = '$member2Email')";
-      $result = $db->query($queryString);
-      while($row = $result->fetch_assoc()){
-        $chatId = $row['chat_id'];
-      }
+      $chatId = $db->insert_id;
 
       //create new row in contacts table that has the new chat id and the members in it
       $insertString = "INSERT INTO contacts (chat_id, email1, email2) VALUES ('$chatId', '$member1Email', '$member2Email')";
       $contactResult = $db->query($insertString);
       if($contactResult){
         echo "it worked! i should redirect you";
+        header("Location: chats.php?chatId=$chatId");
       }
       else{
         echo "<p>Something went wrong with the contact</p>";
@@ -52,7 +49,10 @@
   }
   else{
     echo "<p>Chat already exists</p>";
-    //header("Location: home.php");
+    while($row = $result->fetch_assoc()){
+      $chatId = $row['chat_id'];
+    }
+    header("Location: chats.php?chatId=$chatId");
   }
 
 ?>

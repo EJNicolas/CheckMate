@@ -1,0 +1,29 @@
+.chat-form{
+  position: fixed;
+  bottom: 0;
+  margin-left: 15vw;
+}
+
+#chat-text-area{
+  margin-bottom: 0.5rem;
+}
+
+.chat-messages-scroll-container{
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+.chat-contacts{
+  margin-right: 4rem;
+  min-width: 10%;
+  float: left;
+  overflow-y: auto;
+}
+
+.contact{
+  margin-bottom: 1rem;
+}
+
+/* .chat-message{
+  max-width: 20rem;
+} */

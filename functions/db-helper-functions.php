@@ -20,6 +20,19 @@
       }
       return $email;
     }
+  }
 
+  function getUserName($email){
+    global $db;
+    $queryString = "SELECT username FROM users WHERE email = '$email'";
+    $result = $db->query($queryString);
+    if($result){
+      if(!($result->num_rows == 0)){
+        while($row = $result->fetch_assoc()){
+          $username = $row['username'];
+        }
+      }
+      return $username;
+    }
   }
 ?>
