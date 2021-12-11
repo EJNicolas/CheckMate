@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("header.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
@@ -10,9 +11,9 @@ include("header.php");
   if( isset($_SESSION['email'])){
           $name = $_SESSION['username'];
           $email = $_SESSION['email'];
-          echo "Signed in as: " . $name . "</br>";
+          // echo "Signed in as: " . $name . "</br>";
 }
-if( isset($_POST['byUser'])) $byUser=$_POST['byUser'];
+if( isset($_POST['byUser'])) $byUser=htmlspecialchars($_POST['byUser']);
 if( isset($_POST['eloStart'])) $eloStart=$_POST['eloStart'];
 if( isset($_POST['eloEnd'])) $eloEnd=$_POST['eloEnd'];
 if( isset($_POST['timeStart'])) $timeStart=$_POST['timeStart'];
@@ -40,7 +41,7 @@ $limit = 10;
         <h2>Select Search Conditions</h2>
           <table>
             <tr><td>Search By User: <input type="text" size="16" name="byUser"> </td></tr>
-            <tr><td>Elo Range: <input type="text" size="4" name="eloStart"> To: <input type="text" size="4"name="eloEnd"></td></tr>
+            <tr><td>Elo Range: <input type="number" size="4" name="eloStart"> To: <input type="number" size="4"name="eloEnd"></td></tr>
             <!-- <td><input type="checkbox" name="searchConditions[]" value="hardBounds">Hard Bounds </td></tr> -->
             <tr><td>Event: 
               <select name="eventType">
@@ -50,7 +51,7 @@ $limit = 10;
                 <option value="Classical">Classical</option>
               </select>
               </td>
-            <td>Time Control: <input type="text" size="4" name="timeStart"> + <input type="text" size="4"name="timeAdd"></td></tr>
+            <td>Time Control: <input type="number" size="4" name="timeStart"> + <input type="number" size="4"name="timeAdd"></td></tr>
 
             <tr><td>Termination: 
               <select name="terminationType">

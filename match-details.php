@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("header.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
@@ -8,11 +9,11 @@ include("header.php");
       exit($msg);
   }
 if( isset($_GET['id'])) $id=$_GET['id'];
-if( isset($_POST['commentMessage'])) $id=$_POST['commentMessage'];
+if( isset($_POST['commentMessage'])) $commentMessage=$_POST['commentMessage'];
 if( isset($_SESSION['email'])){
           $name = $_SESSION['username'];
           $email = $_SESSION['email'];
-          echo "Signed in as: " . $name . "</br>";
+          // echo "Signed in as: " . $name . "</br>";
 }
 
 $limit = 10;
@@ -72,7 +73,7 @@ $limit = 10;
       <h2>Comments</h2>
       <?php
       if (isset($_SESSION)){
-        echo "<form action=\"match-details.php\" method=\"post\">
+        echo "<form action=\"match-details.php?id=$id\" method=\"post\">
           <table>
             <tr><td>Add Comment
               <input type=\"textarea\" rows=\"4\" cols=\"30\" name=\"commentMessage\">
@@ -83,10 +84,41 @@ $limit = 10;
       }
         ?>
       <?php
-      echo $email;
+      // echo $email;
+      if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $dateTime = date("Y-m-d  H:i:s");
+        $insertStringA = "INSERT INTO comment_message(username, dateTime, message) VALUES ('$email', '$dateTime', '$commentMessage')";
+        // echo $insertStringA;
+        if(!empty($insertStringA)){
+            $insertAStatement = mysqli_prepare($db, $insertStringA);
+            if(!$insertAStatement) {
+              die("Error is:". mysqli_error($db) );
+            }
+            mysqli_stmt_execute($insertAStatement);
+            $cid = $db->insert_id;
+            // $AResults = mysqli_stmt_get_result($insertAStatement);
+            // if($AResults) { 
+            //   //make only the useful searchConditions
+            //   echo "message";
+            //     //only check if the key exists.
+            //   }
+            // // mysqli_free_result($AResults);
+            mysqli_stmt_close($insertAStatement);
 
-      $insertStringA = "INSERT INTO comment_message(username, dateTime, message) VALUES ('username', 'dateTime', 'message')";
-      $insertStringB = "INSERT INTO comments(email, cid, gameId) VALUES ( 'email', 'cid', 'gameId')";
+          }
+
+        $insertStringB = "INSERT INTO comments(email, cid, gameId) VALUES ( '$email', '$cid', '$id')";
+        if(!empty($insertStringB)){
+            $insertBStatement = mysqli_prepare($db, $insertStringB);
+            if(!$insertBStatement) {
+              die("Error is:". mysqli_error($db) );
+            }
+            mysqli_stmt_execute($insertBStatement);
+            mysqli_stmt_close($insertBStatement);
+
+          }
+        }
+
 
       $commentQuery='';
        $commentQuery = "SELECT *";
@@ -114,7 +146,7 @@ $limit = 10;
               //only check if the key exists.
               echo "<table><tr>";
               echo "<tr><td>" .$commentRow['username']."</td>";
-              echo "<tr><td>" . $commentRow['commentMessage'] ."</td></tr>"; 
+              echo "<tr><td>" . $commentRow['message'] ."</td></tr>"; 
               echo "</tr>";
               echo "  </tr></table>";
               }
