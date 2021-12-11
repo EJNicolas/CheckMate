@@ -72,7 +72,7 @@ $limit = 10;
       ?>
       <h2>Comments</h2>
       <?php
-      if (isset($_SESSION)){
+      if (isset($_SESSION['email'])){
         echo "<form action=\"match-details.php?id=$id\" method=\"post\">
           <table>
             <tr><td>Add Comment
