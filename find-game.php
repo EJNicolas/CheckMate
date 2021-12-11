@@ -1,6 +1,6 @@
 <?php
 include("header.php");
-  $db = mysqli_connect("localhost", "root", "", "new_chess_data");
+  $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
       $msg = "Database connection failed: ";
       $msg .= mysqli_connect_error();
@@ -58,6 +58,7 @@ $limit = 10;
         //Split into multiple lines for clarity
           $query .= " AND (TimeControl = '" .$timeStart ."+" . $timeAdd ."')";
       }
+        //ASK LEO ABOUT IF PAGING SHOULD HAPPEN AS A QUERY OR IN HTML. IF IN HTML HOW DO WE DO IT -------------
       	$query .= " LIMIT ".$limit." OFFSET "."0;";
       	//to add pages, above line is set to offset 0 instead of page number.
       	//Order by id makes results load faster
@@ -74,7 +75,7 @@ $limit = 10;
           mysqli_stmt_execute($statement);
           $results = mysqli_stmt_get_result($statement);
           if(mysqli_num_rows($results) != 0) {
-            
+
             //make only the useful searchConditions
             // echo "<table><tr><td><a href=\"match-details.php\"";
 
@@ -94,7 +95,7 @@ $limit = 10;
               }
             }
             // echo " </td></tr></table>";
-            
+
           mysqli_free_result($results);
           mysqli_stmt_close($statement);
 

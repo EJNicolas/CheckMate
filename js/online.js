@@ -25,11 +25,11 @@ $(document).ready(function(){
             d.setTime(d.getTime() + (1000));
             let expires = "expires="+ d.toUTCString();
             document.cookie = "contactingUser=" + onlineUsername + ";" + expires;
-            window.location.assign("chats.php");
+            window.location.assign("initialize-chat.php");
           });
 
           $(".view-user-profile").on("click", function(){
-            window.location.assign("profile.php");
+            window.location.href = "profile.php?username="+onlineUsername;
           });
 
         }
@@ -40,31 +40,9 @@ $(document).ready(function(){
       });
 
     });
-    setTimeout(checkOnline, 20000);
+    setTimeout(checkOnline, 8000);
   };
 
   checkOnline();
-
-  // var showMenu = false;
-  // body.on("mouseover", function(){
-  //   var onlineUsers = $(".online-user");
-  //   onlineUsers.on("click", function(){
-  //     showMenu = !showMenu;
-  //     console.log(showMenu);
-  //     if(showMenu){
-  //       $(this).append("<ul class='user-drop-down'> \n <li class='user-message'>message</li> \n <li class='view-user-profile'>view profile</li> \n </ul>");
-  //     }
-  //     else{
-  //       $(".user-drop-down").remove();
-  //     }
-  //
-  //     // if(showMenu){
-  //     //   showMenu = false;
-  //     // }
-  //
-  //   });
-  // });
-
-
 
 });
