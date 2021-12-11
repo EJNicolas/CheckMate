@@ -6,8 +6,9 @@
   <body>
     <nav>
       <?php
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['email'])){
           $name = $_SESSION['username'];
+          $email = $_SESSION['email'];
           echo "Signed in as: " . $name . "</br>";
         }
       ?>
