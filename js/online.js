@@ -4,7 +4,6 @@ $(document).ready(function(){
 
   var checkOnline = function() {
     $.getJSON('checkonlineusers.php', function (data){
-      console.log(data);
       $(".online-user").remove();
       $.each(data, function(name, status) {
 			    onlineUsersList.append("<li class='online-user'>"+name+"</li>");
@@ -14,12 +13,10 @@ $(document).ready(function(){
       onlineUsers.on("click", function(){
         showMenu = !showMenu;
         var onlineUsername = $(this).text();
-        console.log(onlineUsername);
         if(showMenu){
           $(this).append("<ul class='user-drop-down'> \n <li class='user-message'>message</li> \n <li class='view-user-profile'>view profile</li> \n </ul>");
 
           $(".user-message").on("click", function(){
-            alert("creating chat between you and " + onlineUsername);
             //setting cookies to in js learned from https://www.w3schools.com/js/js_cookies.asp
             const d = new Date();
             d.setTime(d.getTime() + (1000));
@@ -31,16 +28,13 @@ $(document).ready(function(){
           $(".view-user-profile").on("click", function(){
             window.location.href = "profile.php?username="+onlineUsername;
           });
-
         }
         else{
           $(".user-drop-down").remove();
         }
-
       });
-
     });
-    setTimeout(checkOnline, 8000);
+    setTimeout(checkOnline, 4200);
   };
 
   checkOnline();

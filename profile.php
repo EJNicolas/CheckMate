@@ -1,6 +1,7 @@
 <?php
   session_start();
-  include("profile-header.php");
+  $page = "profile.php";
+  include("header.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
       $msg = "Database connection failed: ";
@@ -14,6 +15,9 @@
   }
   else if(isset($_SESSION['username'])){
     $username = htmlspecialchars($_SESSION['username']);
+  }
+  else{
+    header("Location: login.php");
   }
 
   $queryString = @"SELECT username, player_elo, creation_date, picture_id FROM users WHERE username = '$username'";

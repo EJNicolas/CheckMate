@@ -2,9 +2,8 @@ $(document).ready(function(){
   var chatArea = $(".chat-messages-scroll-container");
 
   var updateChat = function(){
-    let searchParams = new URLSearchParams(window.location.search)
+    let searchParams = new URLSearchParams(window.location.search);
     var chatId = searchParams.get('chatId');
-    console.log(chatId);
     $.getJSON('get-messages.php?chatId='+chatId, function (data) {
       $(".chat-message").remove();
       $.each(data, function (key, value){
