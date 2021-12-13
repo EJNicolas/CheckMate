@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("header.php");
+include("headerDetails.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
       $msg = "Database connection failed: ";
@@ -10,14 +10,12 @@ include("header.php");
   }
 if( isset($_GET['id'])) $id=$_GET['id'];
 if( isset($_POST['commentMessage'])) $commentMessage=$_POST['commentMessage'];
+// if( isset($_POST['Favourite'])) $Favourite=$_POST['Favourite'];
 if( isset($_SESSION['email'])){
           $name = $_SESSION['username'];
           $email = $_SESSION['email'];
           // echo "Signed in as: " . $name . "</br>";
 }
-
-$limit = 10;
-// $page = ($page - 1) * $limit;
   ?>
     <form action="match-details.php" method="get">
     </form>
@@ -33,6 +31,11 @@ $limit = 10;
 
     ?>
     <h1>Match Details</h1>
+    <?php
+    if(isset($_SESSION['email'])){
+      echo "<button type=\"button\" id=\"addFav\">Add To Favourites</button>";
+    }
+    ?>
       <?php
         if(!empty($query)){
           $statement = mysqli_prepare($db, $query);
@@ -70,6 +73,7 @@ $limit = 10;
 
         }
       ?>
+
       <h2>Comments</h2>
       <?php
       if (isset($_SESSION['email'])){
@@ -84,8 +88,7 @@ $limit = 10;
       }
         ?>
       <?php
-      // echo $email;
-      if($_SERVER['REQUEST_METHOD'] == 'POST') {
+      if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($commentMessage)) {
         $dateTime = date("Y-m-d  H:i:s");
         $insertStringA = "INSERT INTO comment_message(username, dateTime, message) VALUES ('$email', '$dateTime', '$commentMessage')";
         // echo $insertStringA;
@@ -104,7 +107,6 @@ $limit = 10;
             //   }
             // // mysqli_free_result($AResults);
             mysqli_stmt_close($insertAStatement);
-
           }
 
         $insertStringB = "INSERT INTO comments(email, cid, gameId) VALUES ( '$email', '$cid', '$id')";
@@ -115,13 +117,12 @@ $limit = 10;
             }
             mysqli_stmt_execute($insertBStatement);
             mysqli_stmt_close($insertBStatement);
-
           }
         }
 
 
       $commentQuery='';
-       $commentQuery = "SELECT *";
+      $commentQuery = "SELECT *";
 
       //from portion
         $commentQuery .= " FROM comments, comment_message ";
