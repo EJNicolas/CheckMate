@@ -1,6 +1,7 @@
 <?php
   session_start();
-  include("chats-header.php");
+  $page = "chats.php";
+  include("header.php");
   include("functions/db-helper-functions.php");
 
   //if(isset($_GET['chatId'])) $chatId = $_GET['chatId'];
