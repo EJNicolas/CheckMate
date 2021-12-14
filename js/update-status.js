@@ -5,11 +5,11 @@ $(document).ready(function(){
     status = readCookie("onlineStatus");
     if(status == "TRUE"){
       console.log("Youre online");
-      statusButton.css("background-color", "green");
+      statusButton.css("background-color", "#779556");
     }
     else{
       console.log("Youre offline");
-      statusButton.css("background-color", "red");
+      statusButton.css("background-color", "#c8342f");
       $.ajax({
         url: 'timeout.php'
       });

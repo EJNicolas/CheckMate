@@ -13,4 +13,5 @@
     $queryString = "UPDATE users SET online_status = FALSE WHERE email = '$email'";
     $result = $db->query($queryString);
   }
+  mysqli_free_result($result);
 ?>
