@@ -13,7 +13,7 @@
 
   echo "<h1>CheckMate</h1>";
 
-  echo "<h2>Featured Random Game</h2>";
+  echo "<h3>Featured Game</h3>";
     $offset = rand(0,762813);
     $query = "SELECT * FROM new_chess_data LIMIT 1 OFFSET " .$offset .";";
     if(!empty($query)){
@@ -33,7 +33,6 @@
               echo "<tr><td> White: " .$row['White'] ." Elo: " .$row['WhiteElo'] ."   ";
               echo " Black: " .$row['Black'] ." Elo: " .$row['BlackElo'] ." </td></tr>";
               echo "<tr><td> ECO: " .$row['ECO'] ." Opening: " .$row['Opening'] ."</td></tr>";
-              echo "<tr><td> Moves: " .$row['AN'] ."</td></tr>";
               echo "</tr>";
               echo "  </tr></table>";
               }

@@ -3,17 +3,10 @@
   session_start();
   $page = "profile.php";
   include("header.php");
-  $db = mysqli_connect("localhost", "root", "", "chess-games");
-  if($db->connect_errno) {
-      $msg = "Database connection failed: ";
-      $msg .= mysqli_connect_error();
-      $msg .= " (" . mysqli_connect_errno() . ")";
-      exit($msg);
-  }
-
-  //gets the username through the url
+  include("functions/db-helper-functions.php");
   if(isset($_GET['username'])){
     $username=htmlspecialchars($_GET['username']);
+    $email = getUserEmail($username);
   }
   //if there is no username in the url, get the user's information through the session
   else if(isset($_SESSION['username'])){
@@ -159,12 +152,16 @@
                         echo "<table><tr>"; //making new tables every link on purpose
                         //this way the table id can be set/styled/clicked on
                         echo "<tr>";
+                        $cellID = $row['id'];
 
                         echo "<tr> <td><a href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
                         echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
-                        echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td></tr>";
-
-
+                        echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td>";
+                        // echo $cellID;
+                        if(isset($_SESSION['username']) && $_SESSION['username'] == $username){
+                          echo "<td><button type=\"button\" class=\"deleteGame\" id='$cellID'>Remove From Favourites</button></td>";
+                        }
+                        echo "</tr>";
                         echo "</tr>";
                         echo "  </tr></table>";
                         }

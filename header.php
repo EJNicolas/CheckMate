@@ -13,10 +13,14 @@
         case "profile.php":
         echo "<link rel='stylesheet' href='css/profile.css'>";
           echo "<script src='js/profile.js'></script>";
+          echo "<script src='js/removeFav.js'></script>";
           break;
         case "chats.php":
           echo "<link rel='stylesheet' href='css/chats.css'>";
           echo "<script src='js/chats.js'></script>";
+          break;
+        case "match-details.php":
+          echo "<script src=\"js/favourites.js\"></script>";
           break;
         default:
           break;

@@ -1,16 +1,10 @@
 <?php
 session_start();
-include("headerDetails.php");
-  $db = mysqli_connect("localhost", "root", "", "chess-games");
-  if($db->connect_errno) {
-      $msg = "Database connection failed: ";
-      $msg .= mysqli_connect_error();
-      $msg .= " (" . mysqli_connect_errno() . ")";
-      exit($msg);
-  }
+$page = "match-details.php";
+include("header.php");
+include("functions/db-helper-functions.php");
 if( isset($_GET['id'])) $id=$_GET['id'];
 if( isset($_POST['commentMessage'])) $commentMessage=$_POST['commentMessage'];
-// if( isset($_POST['Favourite'])) $Favourite=$_POST['Favourite'];
 if( isset($_SESSION['email'])){
           $name = htmlspecialchars($_SESSION['username']);
           $email = htmlspecialchars($_SESSION['email']);
@@ -119,7 +113,7 @@ if( isset($_SESSION['email'])){
       $commentQuery = "SELECT *";
 
       //from portion
-        $commentQuery .= " FROM comments, comment_message ";
+        $commentQuery .= " FROM comments INNER JOIN comment_message ON comments.cid = comment_message.cid ";
       //where portion
         $commentQuery .= "WHERE comments.gameId = '" . $id;
 
@@ -139,8 +133,9 @@ if( isset($_SESSION['email'])){
             //make only the useful searchConditions
             while($commentRow = mysqli_fetch_assoc($commentResults)) {
               //only check if the key exists.
+              $correctUser = getUserName($commentRow['username']);
               echo "<table><tr>";
-              echo "<tr><td>" .$commentRow['username']."</td>";
+              echo "<tr><td>" .$correctUser."</td>";
               echo "<tr><td>" .$commentRow['dateTime']."</td>";
               echo "<tr><td>" . $commentRow['message'] ."</td></tr>"; 
               echo "</tr>";
