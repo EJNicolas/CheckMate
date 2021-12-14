@@ -94,3 +94,26 @@ input,select{
 .view-user-profile:hover{
   color: #728e5a;
 }
+.hoverTable{
+  /*background-color: #779455;*/
+  padding: 0.25rem;
+}
+.hoverTable:hover{
+  background-color: #779455;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+.paging{
+  border-style: solid;
+  border-color: #f1f1f0;
+  padding: 0.2rem;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.paging:hover{
+  background-color: #779455;
+  border-style: solid;
+  border-color: #f1f1f0;
+  padding: 0.4rem;
+  font-size: 1.5rem;
+}

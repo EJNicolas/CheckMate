@@ -209,7 +209,7 @@ $pageNumber = ($pg - 1) * $limit;
               	//this way the table id can be set/styled/clicked on
               	echo "<tr>";
 
-              	echo "<tr> <td><a href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
+              	echo "<tr> <td class='hoverTable'><a  href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
               	echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
               	echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td></tr>";
 
@@ -218,10 +218,10 @@ $pageNumber = ($pg - 1) * $limit;
               	echo "  </tr></table>";
                 }
               if($pg > 1){
-                echo " <a href='?pg=$prev'><-Previous</a>";
+                echo " <a class='paging' href='?pg=$prev'><-Previous</a>";
                 // echo "<button type='button' id=\"prevPage\" class = \"button\" data-typeQuery = '$tempQuery'>Previous Page</button>";
               }
-              echo " <a href='?pg=$next'>next-></a>";
+              echo " <a class='paging' href='?pg=$next'>Next-></a>";
               // echo "<button type='button' id=\"nextPage\" class = \"button\" data-typeQuery = '$tempQuery'>Next Page</button>";
             }
             // echo " </td></tr></table>";
