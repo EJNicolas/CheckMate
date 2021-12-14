@@ -1,4 +1,5 @@
 <?php
+  //connect to session and database
   session_start();
   include("functions/db-helper-functions.php");
 
@@ -47,6 +48,7 @@
       echo "<p>Something went wrong with the chat connection</p>";
     }
   }
+  //if the chat already exists, get the chat id in the url and redirect the user to that chat
   else{
     echo "<p>Chat already exists</p>";
     while($row = $result->fetch_assoc()){

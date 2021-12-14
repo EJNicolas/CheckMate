@@ -43,7 +43,7 @@ $limit = 10;
             <tr><td>Search By User: <input type="text" size="16" name="byUser"> </td></tr>
             <tr><td>Elo Range: <input type="number" size="4" name="eloStart"> To: <input type="number" size="4"name="eloEnd"></td></tr>
             <!-- <td><input type="checkbox" name="searchConditions[]" value="hardBounds">Hard Bounds </td></tr> -->
-            <tr><td>Event: 
+            <tr><td>Event:
               <select name="eventType">
                 <option value="ALL"></option>
                 <option value="Blitz">Blitz</option>
@@ -53,7 +53,7 @@ $limit = 10;
               </td>
             <td>Time Control: <input type="number" size="4" name="timeStart"> + <input type="number" size="4"name="timeAdd"></td></tr>
 
-            <tr><td>Termination: 
+            <tr><td>Termination:
               <select name="terminationType">
                 <option value="ALL"></option>
                 <option value="Normal">Normal</option>
@@ -62,7 +62,7 @@ $limit = 10;
                 <option value="Rules infraction">Rules infraction</option>
               </select>
               </td>
-              <td>Result: 
+              <td>Result:
               <select name="matchResult">
                 <option value="ALL"></option>
                 <option value="whiteWin">White Win</option>
@@ -89,7 +89,7 @@ $limit = 10;
               </td>
               <td>ECO: <input type="text" size="2" name="searchECO"></td></tr>
           </table>
-          <input type="submit">
+          <input type="submit" class='button'>
     </td>
     </tr>
       </table>

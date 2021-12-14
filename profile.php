@@ -1,4 +1,5 @@
 <?php
+  //connect to session and database
   session_start();
   $page = "profile.php";
   include("header.php");
@@ -10,13 +11,16 @@
       exit($msg);
   }
 
+  //gets the username through the url
   if(isset($_GET['username'])){
     $username=htmlspecialchars($_GET['username']);
   }
+  //if there is no username in the url, get the user's information through the session
   else if(isset($_SESSION['username'])){
     $username = htmlspecialchars($_SESSION['username']);
     $email = htmlspecialchars($_SESSION['email']);
   }
+  //if there is no username in the url and there is no session, then the user shouldnt be here,
   else{
     header("Location: login.php");
   }
@@ -38,25 +42,31 @@
     }
 
     //showing information
-    echo "<h1 class='profile-username'>$username</h1>";
+    //showing the profile picture
     $queryString = "SELECT file_location FROM profile_picture WHERE picture_id = $picture";
     $result = $db->query($queryString);
     while($row = $result->fetch_assoc()){
       $pictureFile = $row['file_location'];
     }
-    echo "<img src='$pictureFile' width='200' height='200'>";
-    echo "<p>Account created on: $date</p>";
-    if(!$elo==0){
-      echo "<p>ELO $elo</p>";
-    }
+    echo "<img src='$pictureFile' class='profile-picture'>";
+    //html for other information
+    echo "<div class='profile-information'>";
+      echo "<h1 class='profile-username'>$username</h1>";
+      echo "<p>Account created on: $date</p>";
+      //since inputting an elo is optional, we need to check if a user input anything there
+      if(!$elo==0){
+        echo "<p>ELO $elo</p>";
+      }
+    echo "</div>";
   }
 
   //checks if the session has the same username as on the one in the URL or the session exists and there isnt something in the url
   if( @($_SESSION['username'] == $username) || (isset($_SESSION['username']) && !isset($_GET['username']) )){
 
-    //Updating profile information
+    //Updating profile information after pressing submit on the edit profile form
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
       if( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
+        //retrieve information from POST
         $newUsername = htmlspecialchars($_POST['username']);
         $newPassword = htmlspecialchars($_POST['password']);
         $newPasswordConfirm = htmlspecialchars($_POST['password_confirm']);
@@ -65,15 +75,17 @@
           $newElo = NULL;
         else
           $newElo = $_POST['elo'];
-
+          //query to check if a username of the same name already exists
           $queryString = "SELECT username FROM users WHERE username = '$newUsername'";
           $resultUsername = $db->query($queryString);
+          //check if the password input and the password confirmation are the same
           if(!($newPassword == $newPasswordConfirm)){
             echo "<p>Passwords were not the same</p>";
           }
           else if(!($resultUsername->num_rows == 0)){
             echo "<p>Account under that username already exists. Please use a different one</p>";
           }
+          //if everything is fine, update their information
           else{
             $encryptedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $email = $_SESSION['email'];
@@ -94,8 +106,8 @@
             echo "<p>All inputs are not present</p>";
           }
       }
-
-    echo "<button type='button' id='edit-profile-button'>Edit Profile</button>";
+    //Button to show and hide edit profile form. Look at profile.js to see how javascript changes this
+    echo "<button type='button' id='edit-profile-button' class='button'>Edit Profile</button>";
 
     echo "<form action='profile.php' method='post' id='edit-form' hidden>";
       echo "<label>Username:</label><br />";
@@ -113,8 +125,8 @@
           echo "<option value = '$i'>$i</option>";
         }
       echo "</select> <br />";
-      echo "<input type='submit' />";
-      echo "<button type='button' id='cancel-button'>Cancel</button>";
+      echo "<input type='submit' class='button'/>";
+      echo "<button type='button' id='cancel-button' class='button'>Cancel</button>";
     echo "</form>";
 
   }

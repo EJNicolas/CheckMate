@@ -1,7 +1,14 @@
 body{
   display: block;
+  background-color: #312e2b;
+  color: #f1f1f0;
   margin-left: 2rem;
   font-size: 1.2rem;
+  font-family: sans-serif;
+}
+
+h1{
+  font-size: 3.5rem;
 }
 
 p{
@@ -10,11 +17,61 @@ p{
 }
 
 nav{
-  border-style: solid;
+  background-color: #f1f1f0;
+  padding: 0.5rem;
 }
 
-nav a{
-  margin-left: 2rem;
+.nav-item{
+  padding: 0.5rem;
+  margin-right: 3rem;
+  font-size: 1.5rem;
+  color: #312e2b;
+  text-decoration: none;
+}
+
+.nav-item:hover{
+  text-decoration: underline;
+  color: #312e2b;
+}
+
+.nav-name{
+  margin: 0;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  color: #312e2b;
+}
+
+.change-status-button{
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.change-status-button:hover{
+  text-decoration: underline;
+}
+
+a{
+  font-size: 1.2rem;
+  color: #f1f1f0;
+}
+
+a:hover{
+  color: white;
+}
+
+input,select{
+  margin-bottom: 1rem;
+}
+
+.button{
+  font-size: 1.2rem;
+  padding: 0.25rem;
+}
+
+.button:hover{
+  background-color: #779455;
+  color: #f1f1f0;
 }
 
 .online-user{
@@ -27,8 +84,13 @@ nav a{
 
 .online-user:hover{
   cursor:pointer;
+  text-decoration: underline;
 }
 
-input{
-  margin-bottom: 1rem;
+.user-message:hover{
+  color: #728e5a;
+}
+
+.view-user-profile:hover{
+  color: #728e5a;
 }

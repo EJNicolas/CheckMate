@@ -1,0 +1,22 @@
+.profile-information{
+  background-color: #272522;
+  max-width: 50vw;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-picture{
+  width: 200px;
+  height: 200px;
+  float: left;
+  margin-top: 2rem;
+  margin-right: 2rem;
+}
+
+.favourites-container{
+  margin-top: 4rem;
+}
+
+#cancel-button{
+  margin-left: 2rem;
+}
