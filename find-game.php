@@ -9,20 +9,20 @@ include("header.php");
       exit($msg);
   }
   if( isset($_SESSION['email'])){
-          $name = $_SESSION['username'];
-          $email = $_SESSION['email'];
+          $name = htmlspecialchars($_SESSION['username']);
+          $email = htmlspecialchars($_SESSION['email']);
           // echo "Signed in as: " . $name . "</br>";
 }
 if( isset($_POST['byUser'])) $byUser=htmlspecialchars($_POST['byUser']);
-if( isset($_POST['eloStart'])) $eloStart=$_POST['eloStart'];
-if( isset($_POST['eloEnd'])) $eloEnd=$_POST['eloEnd'];
-if( isset($_POST['timeStart'])) $timeStart=$_POST['timeStart'];
-if( isset($_POST['timeAdd'])) $timeAdd=$_POST['timeAdd'];
-if( isset($_POST['searchOpen'])) $searchOpen=$_POST['searchOpen'];
-if( isset($_POST['searchECO'])) $searchECO=$_POST['searchECO'];
-if( isset($_POST['eventType'])) $eventType=$_POST['eventType'];
-if( isset($_POST['terminationType'])) $terminationType=$_POST['terminationType'];
-if( isset($_POST['matchResult'])) $matchResult=$_POST['matchResult'];
+if( isset($_POST['eloStart'])) $eloStart=htmlspecialchars($_POST['eloStart']);
+if( isset($_POST['eloEnd'])) $eloEnd=htmlspecialchars($_POST['eloEnd']);
+if( isset($_POST['timeStart'])) $timeStart=htmlspecialchars($_POST['timeStart']);
+if( isset($_POST['timeAdd'])) $timeAdd=htmlspecialchars($_POST['timeAdd']);
+if( isset($_POST['searchOpen'])) $searchOpen=htmlspecialchars($_POST['searchOpen']);
+if( isset($_POST['searchECO'])) $searchECO=htmlspecialchars($_POST['searchECO']);
+if( isset($_POST['eventType'])) $eventType=htmlspecialchars($_POST['eventType']);
+if( isset($_POST['terminationType'])) $terminationType=htmlspecialchars($_POST['terminationType']);
+if( isset($_POST['matchResult'])) $matchResult=htmlspecialchars($_POST['matchResult']);
 // if( isset($_POST['searchConditions'])) $searchConditions=$_POST['searchConditions'];
 // if( isset($_POST['hardBounds'])) $searchConditions=$_POST['hardBounds'];
 

@@ -12,8 +12,8 @@ if( isset($_GET['id'])) $id=$_GET['id'];
 if( isset($_POST['commentMessage'])) $commentMessage=$_POST['commentMessage'];
 // if( isset($_POST['Favourite'])) $Favourite=$_POST['Favourite'];
 if( isset($_SESSION['email'])){
-          $name = $_SESSION['username'];
-          $email = $_SESSION['email'];
+          $name = htmlspecialchars($_SESSION['username']);
+          $email = htmlspecialchars($_SESSION['email']);
           // echo "Signed in as: " . $name . "</br>";
 }
   ?>
@@ -47,21 +47,15 @@ if( isset($_SESSION['email'])){
           if(mysqli_num_rows($results) != 0) {
 
             //make only the useful searchConditions
-            // echo "<table><tr><td><a href=\"match-details.php\"";
-
             while($row = mysqli_fetch_assoc($results)) {
               //only check if the key exists.
-            	echo "<table><tr>"; //making new tables every link on purpose
-            	//this way the table id can be set/styled/clicked on
+            	echo "<table><tr>";
             	echo "<tr>";
-
               echo "<tr><td> Event: " .$row['Event'] ." Result: " .$row['Result'] ." TimeControl: ".$row['TimeControl'] ." Termination: " .$row['Termination'] ."</td></tr>";
               echo "<tr><td> White: " .$row['White'] ." Elo: " .$row['WhiteElo'] ."   ";
               echo " Black: " .$row['Black'] ." Elo: " .$row['BlackElo'] ." </td></tr>";
               echo "<tr><td> ECO: " .$row['ECO'] ." Opening: " .$row['Opening'] ."</td></tr>";
               echo "<tr><td> Moves: " .$row['AN'] ."</td></tr>";
-
-
             	echo "</tr>";
             	echo "  </tr></table>";
               }

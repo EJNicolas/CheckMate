@@ -9,8 +9,8 @@
   session_start();
   if( isset($_GET['id'])) $id=$_GET['id'];
   if( isset($_SESSION['email'])){
-          $name = $_SESSION['username'];
-          $email = $_SESSION['email'];
+          $name = htmlspecialchars($_SESSION['username']);
+          $email = htmlspecialchars($_SESSION['email']);
     }
     // echo "<script>console.log('test')</script>";
 
