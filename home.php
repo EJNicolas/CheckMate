@@ -23,7 +23,7 @@
 
   //We want to have a match of the day and we want it to be random each day. Since we randomly took out rows in our database, we cant just do random number within our range since it may give us a non-existant row. Current idea is to use a random offset with limit = 1
 
-  echo "<h2>Featured Random Game</h2>";
+  echo "<h3>Featured Game</h3>";
     $offset = rand(0,762813);
     $query = "SELECT * FROM new_chess_data LIMIT 1 OFFSET " .$offset .";";
     if(!empty($query)){
@@ -43,7 +43,6 @@
               echo "<tr><td> White: " .$row['White'] ." Elo: " .$row['WhiteElo'] ."   ";
               echo " Black: " .$row['Black'] ." Elo: " .$row['BlackElo'] ." </td></tr>";
               echo "<tr><td> ECO: " .$row['ECO'] ." Opening: " .$row['Opening'] ."</td></tr>";
-              echo "<tr><td> Moves: " .$row['AN'] ."</td></tr>";
               echo "</tr>";
               echo "  </tr></table>";
               }

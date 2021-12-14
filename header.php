@@ -11,10 +11,14 @@
           break;
         case "profile.php":
           echo "<script src='js/profile.js'></script>";
+          echo "<script src='js/removeFav.js'></script>";
           break;
         case "chats.php":
           echo "<link rel='stylesheet' href='css/chats.css'>";
           echo "<script src='js/chats.js'></script>";
+          break;
+        case "match-details.php":
+          echo "<script src=\"js/favourites.js\"></script>";
           break;
         default:
           break;
@@ -29,14 +33,14 @@
           $email = $_SESSION['email'];
           echo "Signed in as: " . $name . "</br>";
           echo "<a href='home.php'>Home</a>";
-          echo "<a href='find-game.php'>Search Games</a>";
+          echo "<a href='find-game.php?pg=1'>Search Games</a>";
           echo "<a href='profile.php'>My Profile</a>";
           echo "<a href='logout.php'>Log Out</a>";
           echo "<a href='change-status.php' class='change-status-button'>Change Online Status</a>";
         }
         else{
           echo "<a href='home.php'>Home</a>";
-          echo "<a href='find-game.php'>Search Games</a>";
+          echo "<a href='find-game.php?pg=1'>Search Games</a>";
           echo "<a href='login.php'>Log In</a>";
         }
 

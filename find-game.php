@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page = "find-game.php";
 include("header.php");
   $db = mysqli_connect("localhost", "root", "", "chess-games");
   if($db->connect_errno) {
@@ -8,6 +9,17 @@ include("header.php");
       $msg .= " (" . mysqli_connect_errno() . ")";
       exit($msg);
   }
+  if( isset($_GET['pg'])){
+   $pg = (int)htmlspecialchars($_GET['pg']);
+   if($pg<0){
+    $pg=1;
+   }
+  }
+  else{
+    $pg = 1;
+  }
+  $prev = $pg -1;
+  $next = $pg +1;
   if( isset($_SESSION['email'])){
           $name = htmlspecialchars($_SESSION['username']);
           $email = htmlspecialchars($_SESSION['email']);
@@ -23,8 +35,11 @@ if( isset($_POST['searchECO'])) $searchECO=htmlspecialchars($_POST['searchECO'])
 if( isset($_POST['eventType'])) $eventType=htmlspecialchars($_POST['eventType']);
 if( isset($_POST['terminationType'])) $terminationType=htmlspecialchars($_POST['terminationType']);
 if( isset($_POST['matchResult'])) $matchResult=htmlspecialchars($_POST['matchResult']);
+
+//old query if set, without page number
+// if( isset($_POST['oldQuery'])) $oldQuery=htmlspecialchars($_POST['oldQuery']);
+
 // if( isset($_POST['searchConditions'])) $searchConditions=$_POST['searchConditions'];
-// if( isset($_POST['hardBounds'])) $searchConditions=$_POST['hardBounds'];
 
 //https://stackoverflow.com/questions/25718856/php-best-way-to-display-x-results-per-page
 
@@ -32,10 +47,10 @@ if( isset($_POST['matchResult'])) $matchResult=htmlspecialchars($_POST['matchRes
 //uncomment the lines below when we figure out how we want to do pages, limit to 10 for now for loading purposes
 // $page = $_GET['p']; //track the page number
 $limit = 10;
-// $page = ($page - 1) * $limit;
+$pageNumber = ($pg - 1) * $limit;
   ?>
   <h1>Query</h1>
-    <form action="find-game.php" method="post">
+      <form action="find-game.php" method="post">
       <table>
         <tr><td>
         <h2>Select Search Conditions</h2>
@@ -150,14 +165,18 @@ $limit = 10;
         //LIKE to get Partial Strings
           $query .= " AND (ECO LIKE '%" .$searchECO ."%')";
       }
-      	$query .= " LIMIT ".$limit." OFFSET "."0;";
-      	//to add pages, above line is set to offset 0 instead of page number.
-      	//Order by id makes results load faster
-      	// $query .= ." ORDER BY id LIMIT ".$limit." OFFSET ".$page ;
-      echo $query;
+        // $tempQuery = $query;
+      	// $query .= " LIMIT ".$limit." OFFSET ".$pageNumber .";";
+
+      // echo $query;
     ?>
     <h1>Result</h1>
       <?php
+
+      // $perPage = mysql_query("$query LIMIT $pageNumber,$limit");
+      $perPage = $query;
+      $perPage .= " LIMIT ".$limit." OFFSET ".$pageNumber .";";
+
         if(!empty($query)){
           $statement = mysqli_prepare($db, $query);
           if(!$statement) {
@@ -165,25 +184,45 @@ $limit = 10;
           }
           mysqli_stmt_execute($statement);
           $results = mysqli_stmt_get_result($statement);
+
+
           if(mysqli_num_rows($results) != 0) {
+            $res = mysqli_fetch_assoc($results);
+            if(!isset($res)){
+              $numResults = $res[0];
+              $totalpages = ceil($numResults / $limit);
+            }
 
             //make only the useful searchConditions
             // echo "<table><tr><td><a href=\"match-details.php\"";
-
-            while($row = mysqli_fetch_assoc($results)) {
-              //only check if the key exists.
-            	echo "<table><tr>"; //making new tables every link on purpose
-            	//this way the table id can be set/styled/clicked on
-            	echo "<tr>";
-
-            	echo "<tr> <td><a href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
-            	echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
-            	echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td></tr>";
-
-
-            	echo "</tr>";
-            	echo "  </tr></table>";
+            $resPage = mysqli_prepare($db, $perPage);
+              if(!$resPage){
+                die("Error is:". mysqli_error($db) );
               }
+              mysqli_stmt_execute($resPage);
+              $resultsPaged = mysqli_stmt_get_result($resPage);
+
+              while($row = mysqli_fetch_assoc($resultsPaged)) {
+              // while($row = mysqli_fetch_assoc($results)) {
+                //only check if the key exists.
+              	echo "<table><tr>"; //making new tables every link on purpose
+              	//this way the table id can be set/styled/clicked on
+              	echo "<tr>";
+
+              	echo "<tr> <td><a href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
+              	echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
+              	echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td></tr>";
+
+
+              	echo "</tr>";
+              	echo "  </tr></table>";
+                }
+              if($pg > 1){
+                echo " <a href='?pg=$prev'><-Previous</a>";
+                // echo "<button type='button' id=\"prevPage\" class = \"button\" data-typeQuery = '$tempQuery'>Previous Page</button>";
+              }
+              echo " <a href='?pg=$next'>next-></a>";
+              // echo "<button type='button' id=\"nextPage\" class = \"button\" data-typeQuery = '$tempQuery'>Next Page</button>";
             }
             // echo " </td></tr></table>";
 
