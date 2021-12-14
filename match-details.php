@@ -59,6 +59,10 @@ if( isset($_SESSION['email'])){
           mysqli_free_result($results);
           mysqli_stmt_close($statement);
 
+          echo "<button type=\"button\" id=\"copied\">Copy To Clipboard</button>";
+
+          echo "</br><a class ='button' href = https://lichess.org/paste> Replay Viewer</a>";
+
         }
       ?>
 

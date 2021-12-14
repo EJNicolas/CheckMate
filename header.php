@@ -34,7 +34,7 @@
           $name = $_SESSION['username'];
           $email = $_SESSION['email'];
           echo "<a href='home.php' class='nav-item'>Home</a>";
-          echo "<a href='find-game.php' class='nav-item'>Search Games</a>";
+          echo "<a href='find-game.php?pg=1' class='nav-item'>Search Games</a>";
           echo "<a href='chats.php' class='nav-item'>Chats</a>";
           echo "<a href='profile.php' class='nav-item'>My Profile</a>";
           echo "<a href='logout.php' class='nav-item'>Log Out</a>";
@@ -43,7 +43,7 @@
         }
         else{
           echo "<a href='home.php' class='nav-item'>Home</a>";
-          echo "<a href='find-game.php' class='nav-item'>Search Games</a>";
+          echo "<a href='find-game.php?pg=1' class='nav-item'>Search Games</a>";
           echo "<a href='login.php' class='nav-item'>Log In</a>";
         }
         //if a person is online, whenever they go to a new page, refresh the cookie so the user wont get timed out
