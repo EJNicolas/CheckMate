@@ -44,9 +44,9 @@
   echo "<h2>Online Users</h2>";
   echo "<ul id='online-users-list'>";
   echo "</ul>";
-
+if (isset($_SESSION['email'])){
   echo "<h2>Favourite Games</h2>";
-      $favQueryA = "SELECT * FROM favourites WHERE email = '" . $email ."'";
+      @$favQueryA = "SELECT * FROM favourites WHERE email = '" . $email ."'";
         if(!empty($favQueryA)){
           $favStatementA = mysqli_prepare($db, $favQueryA);
           if(!$favStatementA) {
@@ -87,6 +87,7 @@
                     mysqli_stmt_close($statement);
               }
             }
+          }
         }
 
         }
