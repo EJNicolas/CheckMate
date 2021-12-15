@@ -17,5 +17,4 @@ while($row = $result->fetch_row()){
 }
 //print to json to be retrieved by javascript file (online.js)
 print(json_encode($onlineUsersArray));
-mysqli_free_result($result);
 ?>
