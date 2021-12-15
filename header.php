@@ -38,7 +38,7 @@
           echo "<a href='chats.php' class='nav-item'>Chats</a>";
           echo "<a href='profile.php' class='nav-item'>My Profile</a>";
           echo "<a href='back-end/logout.php' class='nav-item'>Log Out</a>";
-          echo "<a href='back-end/change-status.php' class='change-status-button'>Change Online Status</a>";
+          echo "<a href='change-status.php' class='change-status-button'>Change Online Status</a>";
           echo "<h4 class=nav-name>Signed in as: " . $name . "</h4>";
         }
         else{
