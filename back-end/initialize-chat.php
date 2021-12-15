@@ -1,7 +1,7 @@
 <?php
   //connect to session and database
   session_start();
-  include("functions/db-helper-functions.php");
+  include("../functions/db-helper-functions.php");
 
   //get 1st member's information
   if(isset($_SESSION['email'])){

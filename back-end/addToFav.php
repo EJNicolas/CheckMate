@@ -14,7 +14,7 @@
     }
     // echo "<script>console.log('test')</script>";
 
-    $check = "SELECT * FROM favourites WHERE email='$email' AND gameId='$id'";
+    $check = "SELECT * FROM favourites WHERE email='$email' AND gameID='$id'";
     if(!empty($check)){
         $insertCheck = mysqli_prepare($db, $check);
         if(!$insertCheck) {
@@ -22,9 +22,9 @@
         }
         mysqli_stmt_execute($insertCheck);
         $checkResults = mysqli_stmt_get_result($insertCheck);
-          if(mysqli_num_rows($checkResults) == 0) {          
+          if(mysqli_num_rows($checkResults) == 0) {
             //make only the useful searchConditions
-            $added = "INSERT INTO favourites(email, gameId) VALUES ('$email', '$id')";
+            $added = "INSERT INTO favourites(email, gameID) VALUES ('$email', '$id')";
             // echo $added;
             if(!empty($added)){
             $insertAdded = mysqli_prepare($db, $added);
@@ -39,6 +39,6 @@
         mysqli_stmt_close($insertCheck);
     }
 
-    
+
 
 ?>
