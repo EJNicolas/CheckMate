@@ -1,0 +1,157 @@
+body{
+  display: block;
+  background-color: #312e2b;
+  color: #f1f1f0;
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+}
+
+h1{
+  font-size: 3.5rem;
+}
+
+p{
+  display: block;
+  max-width: 50rem;
+}
+
+nav{
+  background-color: #f1f1f0;
+  padding: 0.5rem;
+}
+
+.nav-item{
+  padding: 0.5rem;
+  margin-right: 3rem;
+  font-size: 1.5rem;
+  color: #312e2b;
+  text-decoration: none;
+}
+
+.nav-item:hover{
+  text-decoration: underline;
+  color: #312e2b;
+}
+
+.nav-name{
+  margin: 0;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  color: #312e2b;
+}
+
+.change-status-button{
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.change-status-button:hover{
+  text-decoration: underline;
+}
+
+a{
+  font-size: 1.2rem;
+  color: #f1f1f0;
+}
+
+a:hover{
+  color: white;
+}
+
+input,select{
+  margin-bottom: 1rem;
+}
+
+.button{
+  font-size: 1.2rem;
+  padding: 0.25rem;
+}
+
+.button:hover{
+  background-color: #779455;
+  color: #f1f1f0;
+}
+
+.online-user{
+  margin-bottom: 1rem;
+}
+
+.user-drop-down:hover{
+  cursor:pointer;
+}
+
+.online-user:hover{
+  cursor:pointer;
+  text-decoration: underline;
+}
+
+.user-message:hover{
+  color: #728e5a;
+}
+
+.view-user-profile:hover{
+  color: #728e5a;
+}
+.hoverTable{
+  /*background-color: #779455;*/
+  padding: 0.25rem;
+}
+.hoverTable:hover{
+  background-color: #779455;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+.paging{
+  border-style: solid;
+  border-color: #f1f1f0;
+  padding: 0.2rem;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.paging:hover{
+  background-color: #779455;
+  border-style: solid;
+  border-color: #f1f1f0;
+  padding: 0.4rem;
+  font-size: 1.5rem;
+}
+.matchDetails{
+  padding: 0.1rem;
+}
+.matchTable{
+  padding: 0.3rem;
+  border-style: solid;;
+  border-color: #f1f1f0;
+  margin: 0.6rem;
+  max-width: 48rem;
+}
+.tableRow{
+  padding: 1rem;
+}
+.tableElem{
+  padding: 0.5rem;
+  max-width: 18rem;
+  text-decoration:none;
+  /* text-align: center; */
+}
+.tableAN{
+  padding: 0.5rem;
+  max-width: 48rem;
+}
+.copyButton{
+  border: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+.tableLink{
+  text-decoration: none;
+  font-size: 1rem;
+}
+.commentsTable{
+  background-color: #2b2a26;
+  margin: 1rem;
+  padding: 1rem;
+  width: 90vw;
+}
