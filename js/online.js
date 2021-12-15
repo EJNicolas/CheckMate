@@ -5,7 +5,7 @@ $(document).ready(function(){
 
   var checkOnline = function() {
     //get a json list of all online users from chceckonlineusers.php
-    $.getJSON('checkonlineusers.php', function (data){
+    $.getJSON('back-end/checkonlineusers.php', function (data){
       //remove all of online users in html (will be put back later)
       $(".online-user").remove();
       //show all of the online users in a list
@@ -33,7 +33,7 @@ $(document).ready(function(){
             d.setTime(d.getTime() + (1000));
             let expires = "expires="+ d.toUTCString();
             document.cookie = "contactingUser=" + onlineUsername + ";" + expires;
-            window.location.assign("initialize-chat.php");
+            window.location.assign("back-end/initialize-chat.php");
           });
           //if the user clicks on the profile option, move them to the profile.php with the user's name in the url
           $(".view-user-profile").on("click", function(){

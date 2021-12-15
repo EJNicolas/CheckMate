@@ -34,6 +34,6 @@
       setcookie("onlineStatus","TRUE",time()+10);
     }
     $result = $db->query($queryString);
-    header("Location: home.php");
+    header("Location: ../index.php");
   }
 ?>

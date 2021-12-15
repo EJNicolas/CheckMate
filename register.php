@@ -59,7 +59,7 @@
             echo "<p>Insert was successful</p>";
             $_SESSION['email'] = $email;
             $_SESSION['username'] = $username;
-            header("Location: home.php");
+            header("Location: index.php");
           }
           else{
             echo "<p>Insert was not successful</p>";

@@ -92,7 +92,7 @@
         echo "</div>";
       echo "</div>";
 
-      include("send-message.php");
+      include("back-end/send-message.php");
     }
   }
   include("footer.php");

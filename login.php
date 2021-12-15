@@ -12,7 +12,7 @@
 
   //if the user is logged in, send them to the home page if they try accessing the log in page again
   if(isset($_SESSION['email'])){
-    header("Location: home.php");
+    header("Location: index.php");
   }
 
   //code to perform once the user hits the submit button
@@ -44,7 +44,7 @@
         echo "<p>You are logged in. Welcome $dbUsername</p>";
         $_SESSION['email'] = $email;
         $_SESSION['username'] = $dbUsername;
-        header("Location: home.php");
+        header("Location: index.php");
       }
       else
         echo "<p>Wrong username or password</p>";

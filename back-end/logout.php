@@ -19,6 +19,6 @@
   //makes the online status cookie expire
   setcookie("onlineStatus",time()-1);
 
-  header("Location: login.php");
+  header("Location: ../login.php");
 
 ?>

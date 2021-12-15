@@ -8,7 +8,7 @@
     $member1Email = $_SESSION['email'];
     $member1Name = $_SESSION['username'];
   }
-  else header("Location: login.php");
+  else header("Location: ../login.php");
 
   //get 2nd member's information
   if(isset($_COOKIE['contactingUser'])){
@@ -38,7 +38,7 @@
       $contactResult = $db->query($insertString);
       if($contactResult){
         echo "it worked! i should redirect you";
-        header("Location: chats.php?chatId=$chatId");
+        header("Location: ../chats.php?chatId=$chatId");
       }
       else{
         echo "<p>Something went wrong with the contact</p>";
@@ -54,7 +54,7 @@
     while($row = $result->fetch_assoc()){
       $chatId = $row['chat_id'];
     }
-    header("Location: chats.php?chatId=$chatId");
+    header("Location: ../chats.php?chatId=$chatId");
   }
 
 ?>
