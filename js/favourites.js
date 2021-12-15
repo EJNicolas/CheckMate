@@ -7,7 +7,7 @@ $(document).ready(function(){
   	addFav.on("click", function(){
   	alert("Added To Favourites");
     $.ajax({
-        url: 'addToFav.php?id='+gameID 
+        url: 'back-end/addToFav.php?id='+gameID 
       }).fail(function(er){
       console.log(er);
     });
@@ -16,7 +16,7 @@ $(document).ready(function(){
     var copyToClip = $("#copied");
     copyToClip.on("click", function(){
       alert("Copied To Clipboard");
-      $.getJSON('copyToClip.php?id='+gameID, function (data) {
+      $.getJSON('back-end/copyToClip.php?id='+gameID, function (data) {
         console.log(data);
         $.each(data, function (key, value){
 

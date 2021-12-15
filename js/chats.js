@@ -7,7 +7,7 @@ $(document).ready(function(){
     let searchParams = new URLSearchParams(window.location.search);
     var chatId = searchParams.get('chatId');
     //get the json that was printed in get-messages.php
-    $.getJSON('get-messages.php?chatId='+chatId, function (data) {
+    $.getJSON('back-end/get-messages.php?chatId='+chatId, function (data) {
       //remove all of the elements in the chat
       $(".chat-message").remove();
       //re-add all of the messages that was sent by the json

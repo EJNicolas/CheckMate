@@ -27,9 +27,10 @@ if( isset($_SESSION['email'])){
     <h1>Match Details</h1>
     <?php
     if(isset($_SESSION['email'])){
-      echo "<button type=\"button\" id=\"addFav\">Add To Favourites</button>";
+      echo "<button type=\"button\" id=\"addFav\" class=\"button\">Add To Favourites</button>";
     }
     ?>
+    <div class = "matchDetails">
       <?php
         if(!empty($query)){
           $statement = mysqli_prepare($db, $query);
@@ -43,14 +44,13 @@ if( isset($_SESSION['email'])){
             //make only the useful searchConditions
             while($row = mysqli_fetch_assoc($results)) {
               //only check if the key exists.
-            	echo "<table><tr>";
-            	echo "<tr>";
-              echo "<tr><td> Event: " .$row['Event'] ." Result: " .$row['Result'] ." TimeControl: ".$row['TimeControl'] ." Termination: " .$row['Termination'] ."</td></tr>";
-              echo "<tr><td> White: " .$row['White'] ." Elo: " .$row['WhiteElo'] ."   ";
-              echo " Black: " .$row['Black'] ." Elo: " .$row['BlackElo'] ." </td></tr>";
-              echo "<tr><td> ECO: " .$row['ECO'] ." Opening: " .$row['Opening'] ."</td></tr>";
-              echo "<tr><td> Moves: " .$row['AN'] ."</td></tr>";
-            	echo "</tr>";
+            	echo "<table class=\"matchTable\"><tr>";
+              echo "<tr><td class=\"tableElem\"> Event: " .$row['Event']  ."TimeControl: ".$row['TimeControl'] ."</td><td class=\"tableElem\"> Termination: " .$row['Termination'] ." Result: " .$row['Result'] ."</td></tr>";
+              echo "<tr><td class=\"tableElem\"> White: " .$row['White'] ." Elo: " .$row['WhiteElo'] ."   ";
+              echo "</td><td class=\"tableElem\"> Black: " .$row['Black'] ." Elo: " .$row['BlackElo'] ." </td></tr>";
+              echo "<tr><td class=\"tableElem\"> ECO: " .$row['ECO'] ."</td><td class=\"tableElem\"> Opening: " .$row['Opening'] ."</td></tr>";
+              echo "<tr><td class=\"tableAN\" colspan=\"2\"> Moves: " .$row['AN'];
+              echo " </td></tr><tr><td class=\"copyButton\" colspan=\"2\"> Save AN to clipboard: <button type=\"button\" id=\"copied\">Copy To Clipboard</button>" ."</td></tr>";
             	echo "  </tr></table>";
               }
             }
@@ -59,13 +59,13 @@ if( isset($_SESSION['email'])){
           mysqli_free_result($results);
           mysqli_stmt_close($statement);
 
-          echo "<button type=\"button\" id=\"copied\">Copy To Clipboard</button>";
+          // echo "<button type=\"button\" id=\"copied\">Copy To Clipboard</button>";
 
           echo "</br><a class ='button' href = https://lichess.org/paste> Replay Viewer</a>";
 
         }
       ?>
-
+    </div>
       <h2>Comments</h2>
       <?php
       if (isset($_SESSION['email'])){
@@ -92,7 +92,7 @@ if( isset($_SESSION['email'])){
             mysqli_stmt_execute($insertAStatement);
             $cid = $db->insert_id;
             // $AResults = mysqli_stmt_get_result($insertAStatement);
-            // if($AResults) { 
+            // if($AResults) {
             //   //make only the useful searchConditions
             //   echo "message";
             //     //only check if the key exists.
@@ -133,21 +133,21 @@ if( isset($_SESSION['email'])){
           mysqli_stmt_execute($commentStatement);
           $commentResults = mysqli_stmt_get_result($commentStatement);
           if(mysqli_num_rows($commentResults) != 0) {
-            
+
             //make only the useful searchConditions
             while($commentRow = mysqli_fetch_assoc($commentResults)) {
               //only check if the key exists.
               $correctUser = getUserName($commentRow['username']);
-              echo "<table><tr>";
-              echo "<tr><td>" .$correctUser."</td>";
-              echo "<tr><td>" .$commentRow['dateTime']."</td>";
-              echo "<tr><td>" . $commentRow['message'] ."</td></tr>"; 
+              echo "<table class=\"commentsTable\"><tr>";
+              echo "<tr><td><b>" .$correctUser."</b></td>";
+              echo "<tr><td><small>" .$commentRow['dateTime']."</small></td>";
+              echo "<tr><td>" . $commentRow['message'] ."</td></tr>";
               echo "</tr>";
               echo "  </tr></table>";
               }
             }
             // echo " </td></tr></table>";
-            
+
           mysqli_free_result($commentResults);
           mysqli_stmt_close($commentStatement);
 

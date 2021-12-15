@@ -92,11 +92,9 @@
         echo "</div>";
       echo "</div>";
 
-      include("send-message.php");
+      include("back-end/send-message.php");
     }
   }
-
-  mysqli_free_result($result);
   include("footer.php");
 
 ?>

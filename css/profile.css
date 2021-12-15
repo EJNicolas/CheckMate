@@ -2,15 +2,16 @@
   background-color: #272522;
   max-width: 50vw;
   padding: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .profile-picture{
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   float: left;
-  margin-top: 2rem;
-  margin-right: 2rem;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+  margin-right: 3rem;
 }
 
 .favourites-container{

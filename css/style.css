@@ -117,3 +117,41 @@ input,select{
   padding: 0.4rem;
   font-size: 1.5rem;
 }
+.matchDetails{
+  padding: 0.1rem;
+}
+.matchTable{
+  padding: 0.3rem;
+  border-style: solid;;
+  border-color: #f1f1f0;
+  margin: 0.6rem;
+  max-width: 48rem;
+}
+.tableRow{
+  padding: 1rem;
+}
+.tableElem{
+  padding: 0.5rem;
+  max-width: 18rem;
+  text-decoration:none;
+  /* text-align: center; */
+}
+.tableAN{
+  padding: 0.5rem;
+  max-width: 48rem;
+}
+.copyButton{
+  border: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+.tableLink{
+  text-decoration: none;
+  font-size: 1rem;
+}
+.commentsTable{
+  background-color: #2b2a26;
+  margin: 1rem;
+  padding: 1rem;
+  width: 90vw;
+}

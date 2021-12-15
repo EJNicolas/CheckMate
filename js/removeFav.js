@@ -9,7 +9,7 @@ $(document).ready(function(){
     gameID = this.id;
     console.log(gameID);
     $.ajax({
-        url: 'removeFromFave.php?id='+gameID
+        url: 'back-end/removeFromFave.php?id='+gameID
       }).fail(function(er){
       console.log(er);
     });

@@ -205,14 +205,14 @@ $pageNumber = ($pg - 1) * $limit;
               while($row = mysqli_fetch_assoc($resultsPaged)) {
               // while($row = mysqli_fetch_assoc($results)) {
                 //only check if the key exists.
-              	echo "<table><tr>"; //making new tables every link on purpose
+              	echo "<table class=\"matchTable\"><tr>"; //making new tables every link on purpose
               	//this way the table id can be set/styled/clicked on
               	echo "<tr>";
 
-              	echo "<tr> <td class='hoverTable'><a  href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
-              	echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
-              	echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td></tr>";
-
+              	echo "<tr> <td class='hoverTable'><a class=\"tableLink\" href=\"match-details.php?id=".$row['id']."\">Event: ".$row['Event']." " .$row['Result'];
+                echo "<br> Time Control: " . $row['TimeControl']." Termination:     ". $row['Termination']."" . " <br>";
+              	echo "White:   " . $row['White'] ." (ELO:" . $row['WhiteElo'].")     VS     Black:   " . $row['Black'] ." (ELO: " . $row['BlackElo']. ") <br>";
+              	echo "</td></tr>";
 
               	echo "</tr>";
               	echo "  </tr></table>";

@@ -149,21 +149,22 @@
                     if(mysqli_num_rows($results) != 0) {
                       while($row = mysqli_fetch_assoc($results)) {
                         //only check if the key exists.
-                        echo "<table><tr>"; //making new tables every link on purpose
+                        $cellID = $row['id'];
+                        echo "<table class=\"matchTable\"><tr>"; //making new tables every link on purpose
                         //this way the table id can be set/styled/clicked on
                         echo "<tr>";
-                        $cellID = $row['id'];
 
-                        echo "<tr> <td><a href=\"match-details.php?id=".$row['id']."\">" . $row['TimeControl']." ".$row['Event'] . $row['Termination']."" . " <br>";
-                        echo "" . $row['White'] ."  VS  " . $row['Black'] . " <br>";
-                        echo " " . $row['WhiteElo'] ." ".$row['Result']." " . $row['BlackElo'] . "</td>";
-                        // echo $cellID;
+                        echo "<tr> <td class='hoverTable'><a class=\"tableLink\" href=\"match-details.php?id=".$row['id']."\">Event: ".$row['Event']." " .$row['Result'];
+                        echo "<br> Time Control: " . $row['TimeControl']." Termination:     ". $row['Termination']."" . " <br>";
+                        echo "White:   " . $row['White'] ." (ELO:" . $row['WhiteElo'].")     VS     Black:   " . $row['Black'] ." (ELO: " . $row['BlackElo']. ") <br>";
+                        echo "</td></tr>";
+
+                        echo "</tr>";
                         if(isset($_SESSION['username']) && $_SESSION['username'] == $username){
-                          echo "<td><button type=\"button\" class=\"deleteGame\" id='$cellID'>Remove From Favourites</button></td>";
+                          echo "<tr><td><button type=\"button\" class=\"deleteGame\" id='$cellID'>Remove From Favourites</button></td></tr>";
                         }
-                        echo "</tr>";
-                        echo "</tr>";
                         echo "  </tr></table>";
+
                         }
                       }
                     mysqli_free_result($results);

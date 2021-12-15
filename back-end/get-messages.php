@@ -24,5 +24,4 @@
   }
   //encode associative array to json (check chats.js)
   print(json_encode($messagesArray));
-  mysqli_free_result($result);
 ?>

@@ -11,7 +11,7 @@ $(document).ready(function(){
       console.log("Youre offline");
       statusButton.css("background-color", "#c8342f");
       $.ajax({
-        url: 'timeout.php'
+        url: 'back-end/timeout.php'
       });
     }
 
